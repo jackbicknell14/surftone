@@ -1,0 +1,36 @@
+
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Surftone. Built for fans, by the artists.</h1>
+        <p class="lead">Set up your account below:</p>
+        <p><a class="btn btn-lg btn-success"  data-toggle="modal" href="#signupModal">Create account</a></p>
+
+        <p><a class="btn btn-lg btn-success"  data-toggle="modal" href="{% url 'login' %}">Login</a></p>
+    </div>
+pip
+    <!-- Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+        <div class="modal-dialog"><div class="modal-content">
+            <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">Provide a few details and we'll be in touch...</h4>
+            </div>
+            <div class="modal-body"><form id="signupForm" role="form" method="POST">
+                <input type="hidden" id="theme" name="theme" value="flatly"/>
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Join Today</legend>
+                    {{ form| crispy }}
+                </fieldset>
+                <div class="form-group"><button class="btn btn-outline-info" type="submit">Sign Up</button></div>
+            </form>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Already Have an Account? <a class="ml-2" href="{% url 'login' %}">Log In</a>
+                    </small>
+                </div>
+            </div><!-- /.modal-body -->
+        </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    {%  endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+    {% for song in songs %}
+        <div class="well">
+            <div class="media">
+                <img class="pull-left rounded-circle article-img"
+                     src="/media/logo.png"
+                     height="100" width ="200">
+                <div class="text-center media-body">
+                    <h4 class="text-primary">{{ song.title }} </h4>
+                    <p class="text-muted">By {{ song.artist }}</p>
+                    <audio controls>
+                        <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+  <p><a href="{% url 'surftone-home' %}">Return to home</a></p>
+{% endblock %}
